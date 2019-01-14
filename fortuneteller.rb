@@ -1,73 +1,39 @@
-puts "Welcome to the digital fortune teller"
-puts "What is your first name?"
-first_name = gets.chomp
-first_name.capitalize!
+require_relative 'slow_type'
+require_relative 'prediction_generator'
 
-  puts "Thank you #{first_name}. Now, what is your last name?"
-last_name = gets.chomp
-last_name.capitalize!
+SlowType.creep_type("Welcome to the digital fortune teller")
+SlowType.creep_type("What is your first name?")
+SlowType.prompt
+first_name = $stdin.gets.chomp.capitalize
 
-  puts "And how old are you?"
-user_age = Integer(gets.chomp)
+SlowType.creep_type("Thank you #{first_name}. Now, what is your last name?")
+SlowType.prompt
+last_name = $stdin.gets.chomp.capitalize
 
-puts "And what is the number of the month in which you were born?"
-birth_month = Integer(gets.chomp)
+SlowType.creep_type("And how old are you?")
+SlowType.prompt
+user_age = Integer($stdin.gets.chomp)
 
-puts "Now, of the ROYGBIV colors, which is your favorite?"
-favorite_color = gets.chomp
-favorite_color.downcase!
+SlowType.creep_type("And what is the number of the month in which you were born?")
+SlowType.prompt
+birth_month = Integer($stdin.gets.chomp)
 
-  puts "Last question, how many siblings do you have?"
-sibling_number = Integer(gets.chomp)
+SlowType.creep_type("Now, of the ROYGBIV colors, which is your favorite?")
+SlowType.prompt
+favorite_color = $stdin.gets.chomp.downcase
 
-if user_age % 2 > 0
-to_retirement_years = user_age + 5
-else
-  to_retirement_years = user_age - 4
-end
+SlowType.creep_type("Last question, how many siblings do you have?")
+SlowType.prompt
+sibling_number = Integer($stdin.gets.chomp)
 
-retirement_years = "#{to_retirement_years} years"
+retirement_years = String(PredictionGenerator.generate_retirement(user_age)) + " years"
 
-if sibling_number == 0
-vacation_home = "Michigan City, IN"
-elsif sibling_number == 1
-vacation_home = "Monterey, CA"
-elsif sibling_number == 2
-vacation_home = "Venice, Italy"
-elsif sibling_number == 3
-vacation_home = "Seoul, Korea"
-elsif sibling_number >= 4
-vacationHome = "Dublin, Ireland"
-else
-  vacation_home = "The Darvaza Gas Crater, Turkmenistan"
-end
+vacation_home = PredictionGenerator.generate_city(sibling_number)
 
-if favorite_color.eql? "red"
-transport_mode = "scooter"
-elsif favorite_color.eql? "orange"
-transport_mode = "Uber"
-elsif favorite_color.eql? "yellow"
-transport_mode = "motorcycle"
-elsif favorite_color.eql? "green"
-transport_mode = "Prius"
-elsif favorite_color.eql? "blue"
-transport_mode = "Tesla"
-elsif favorite_color.eql? "indigo"
-transport_mode = "roller blades"
-elsif favorite_color.eql? "violet"
-transport_mode = "skateboard"
-else
-  transport_mode = "penny-farthing"
-end
+transport_mode = PredictionGenerator.generate_transport(favorite_color)
 
-if birth_month >= 6 && birth_month <= 12
-bank_balance = (birth_month * 2) ** 10
-elsif birth_month < 6 && birth_month > 0
-bank_balance = (birth_month * 3) ** 5
-else
-  bank_balance = 0.00
-end
+bank_balance = PredictionGenerator.generate_bank_balance(birth_month)
 
-puts "#{first_name} #{last_name} will retire in #{retirement_years} with $#{bank_balance} in the bank, a vacation home in #{vacation_home} and travel by #{transport_mode}."
+SlowType.creep_type(PredictionGenerator.final_prediction(first_name, last_name, retirement_years, bank_balance, vacation_home, transport_mode))
 
-puts "farewell..."
+SlowType.creep_type("farewell...")
