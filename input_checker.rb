@@ -1,6 +1,5 @@
-require_relative 'slow_type'
-
-class InputChecker
+module InputChecker
+  include SlowType
 
   def self.int_check(i, q)
     loop do

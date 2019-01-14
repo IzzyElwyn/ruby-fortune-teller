@@ -1,6 +1,6 @@
-class SlowType
+module SlowType
 
-  def self.creep_type(text)
+  def SlowType.creep_type(text)
     text = text.split('')
     text.each do |l|
       sleep 0.08
@@ -9,7 +9,7 @@ class SlowType
     print "\n"
   end
 
-  def self.prompt
+  def SlowType.prompt
     puts '> '
   end
 

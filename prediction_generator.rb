@@ -1,4 +1,4 @@
-class PredictionGenerator
+module PredictionGenerator
 
   def self.generate_retirement(user_age)
     if user_age % 2 > 0
