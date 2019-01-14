@@ -13,19 +13,19 @@ last_name = gets.chomp.capitalize
 
 SlowType.creep_type("And how old are you?")
 SlowType.prompt
-user_age = InputChecker.int_check(entered_age = gets.chomp, "How old are you?")
+user_age = InputChecker.int_check(gets.chomp, "How old are you?")
 
 SlowType.creep_type("And what is the number of the month in which you were born?")
 SlowType.prompt
-birth_month = InputChecker.int_check(entered_month = gets.chomp, "What is the NUMBER of the month you were born in?")
+birth_month = InputChecker.int_check(gets.chomp, "What is the NUMBER of the month you were born in?")
 
 SlowType.creep_type("Now, of the ROYGBIV colors, which is your favorite?")
 SlowType.prompt
-favorite_color = gets.chomp.downcase
+favorite_color = InputChecker.color_check(gets.chomp, "What is your favorite ROYGBIV color?")
 
 SlowType.creep_type("Last question, how many siblings do you have?")
 SlowType.prompt
-sibling_number = InputChecker.int_check(entered_siblings = gets.chomp, "How many siblings do you have?")
+sibling_number = InputChecker.int_check(gets.chomp, "How many siblings do you have?")
 
 retirement_years = String(PredictionGenerator.generate_retirement(user_age)) + " years"
 vacation_home = PredictionGenerator.generate_city(sibling_number)

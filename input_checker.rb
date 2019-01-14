@@ -12,4 +12,19 @@ module InputChecker
     return i.to_i
   end
 
+  def self.color_check(color, reprompt)
+    roygbiv = ["red", "orange", "green", "blue", "indigo", "violet"]
+
+    loop do
+      break if roygbiv.include? color.downcase
+      SlowType.creep_type("Please enter one of the ROYGBIV colors (red, orange, yellow, green, blue, indigo, or violet)")
+      SlowType.creep_type(reprompt)
+      SlowType.prompt
+      color = gets.chomp
+    end
+
+    return color.downcase
+
+  end
+
 end
