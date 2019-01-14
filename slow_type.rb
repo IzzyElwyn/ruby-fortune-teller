@@ -1,5 +1,4 @@
 module SlowType
-
   def self.creep_type(text)
     text = text.split('')
     text.each do |l|
@@ -12,5 +11,4 @@ module SlowType
   def self.prompt
     puts '> '
   end
-
 end
