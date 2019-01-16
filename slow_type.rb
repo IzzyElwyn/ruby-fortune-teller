@@ -9,6 +9,6 @@ module SlowType
   end
 
   def self.prompt
-    puts '> '
+    print '> '
   end
 end
