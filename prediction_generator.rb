@@ -1,22 +1,24 @@
 module PredictionGenerator
+  include SlowType
   def self.generate_retirement(user_age)
     if user_age % 2 > 0
-      user_age + 5
+      user_age + 6
     else
-      user_age - 4
+      user_age + 3
     end
   end
 
   def self.generate_city(sibling_number)
-    if sibling_number == 0
+    case sibling_number
+    when 0
       'Michigan City, IN'
-    elsif sibling_number == 1
+    when 1
       'Monterey, CA'
-    elsif sibling_number == 2
+    when 2
       'Venice, Italy'
-    elsif sibling_number == 3
+    when 3
       'Seoul, Korea'
-    elsif sibling_number >= 4
+    when 4
       'Dublin, Ireland'
     else
       'The Darvaza Gas Crater, Turkmenistan'
@@ -24,19 +26,20 @@ module PredictionGenerator
   end
 
   def self.generate_transport(favorite_color)
-    if favorite_color.eql? 'red'
+    case favorite_color
+    when 'red'
       'scooter'
-    elsif favorite_color.eql? 'orange'
+    when 'orange'
       'Uber'
-    elsif favorite_color.eql? 'yellow'
+    when 'yellow'
       'motorcycle'
-    elsif favorite_color.eql? 'green'
+    when 'green'
       'Prius'
-    elsif favorite_color.eql? 'blue'
+    when 'blue'
       'Tesla'
-    elsif favorite_color.eql? 'indigo'
+    when 'indigo'
       'roller blades'
-    elsif favorite_color.eql? 'violet'
+    when 'violet'
       'skateboard'
     else
       'penny-farthing'
@@ -44,12 +47,10 @@ module PredictionGenerator
   end
 
   def self.generate_bank_balance(birth_month)
-    if birth_month >= 6 && birth_month <= 12
+    if birth_month >= 6
       (birth_month * 2)**10
-    elsif birth_month < 6 && birth_month > 0
-      (birth_month * 3)**5
     else
-      0.00
+      (birth_month * 3)**5
     end
   end
 
