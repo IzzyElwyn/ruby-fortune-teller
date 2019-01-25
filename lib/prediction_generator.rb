@@ -1,5 +1,5 @@
 module PredictionGenerator
-  include SlowType
+  extend SlowType
   def self.generate_retirement(user_age)
     if user_age % 2 > 0
       user_age + 6
